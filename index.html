@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Credit Card Checkout - Daily UI #004 | Uğur Toprakdeviren</title>
+  <meta name="description" content="An elegant, secure and interactive credit card checkout interface with real-time validation, designed and developed by Uğur Toprakdeviren as part of the Daily UI challenge.">
+  <meta name="keywords" content="credit card checkout, payment form, UI components, frontend showcase, CSS animations, interactive UI, web design, UI/UX, daily UI, Uğur Toprakdeviren, secure payment, form validation">
+  <meta name="author" content="Uğur Toprakdeviren">
+  <link rel="author" href="https://github.com/toprakdeviren">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toprakdeviren.github.io/polished-ui-showcase/04-credit-cardicheckout/">
+  <meta property="og:title" content="Credit Card Checkout - Daily UI #004 | Uğur Toprakdeviren">
+  <meta property="og:description" content="An elegant, secure credit card checkout interface with real-time validation and dynamic card preview. Part of the Daily UI challenge by Uğur Toprakdeviren.">
+  <meta property="og:image" content="https://toprakdeviren.github.io/polished-ui-showcase/04-credit-cardicheckout/preview.png">
+  <meta property="og:image:alt" content="A preview of Uğur Toprakdeviren's Credit Card Checkout interface, showing an elegant payment form with real-time validation.">
+  <meta property="og:site_name" content="Polished UI Showcase by Uğur Toprakdeviren">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://toprakdeviren.github.io/polished-ui-showcase/04-credit-cardicheckout/">
+  <meta name="twitter:title" content="Credit Card Checkout - Daily UI #004 | Uğur Toprakdeviren">
+  <meta name="twitter:description" content="An elegant credit card checkout interface with dynamic card preview and real-time validation, built with modern web technologies.">
+  <meta property="twitter:image" content="https://toprakdeviren.github.io/polished-ui-showcase/04-credit-cardicheckout/preview.png">
+  <meta name="twitter:image:alt" content="Uğur Toprakdeviren's Credit Card Checkout interface with animated card preview and validation.">
+  <meta name="twitter:creator" content="@toprakdevos">
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon-16.svg" sizes="16x16">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon-32.svg" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon-192.svg" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4F46E5">
+  
+  <link rel="stylesheet" href="src/styles/output.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body class="min-h-dvh flex items-center justify-center p-4 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-800 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+
+  <div role="alert" aria-live="assertive" class="sr-only" id="statusAnnouncer"></div>
+
+  
+  <section class="w-full max-w-5xl bg-slate-800/90 text-white rounded-2xl shadow-2xl
+                  backdrop-blur ring-1 ring-slate-700/50 overflow-hidden transition-all duration-300">
+
+    <header class="flex items-center gap-3 px-6 pt-6 pb-2">
+      <a href="#" title="Go back" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+        <i class="fa fa-arrow-left"></i><span class="font-medium">Back</span>
+      </a>
+    </header>
+    <hr class="border-slate-700/70 mb-6">
+
+    <div class="flex flex-col lg:flex-row gap-10 px-6 pb-10">
+
+      <form id="paymentForm" novalidate class="lg:w-2/3 space-y-6" autocomplete="off">
+
+        <div class="flip-container w-full h-56 mb-8 perspective-1000"
+        <div class="perspective-1000">
+          <div id="cardElement" class="relative transition-transform duration-700 transform-style-3d h-48 w-full">
+            
+            <div id="cardFront" class="absolute backface-hidden w-full h-full">
+              <div id="cardPreview"
+                   class="tilt h-48 rounded-xl bg-gradient-to-br from-indigo-600 via-purple-700 to-purple-800
+                          shadow-lg px-6 py-5 flex flex-col justify-between relative overflow-hidden">
+                
+                <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMyIgZD0iTTU2LjY2NywyMC40MTdDNjAsNDQuNDE3LDQwLDQ0LjQxNyw0MCw0NC40MTcgUzI2LjY2Nyw0NC40MTcsMzAsNjBjLTEwLTEzLjMzMy0yMC0xMy4zMzMtMjYuNjY3LDAgQzguMzMzLDM2LDAsMzMuMzMzLDAsNDAiPjwvcGF0aD48L3N2Zz4=');"></div>
+                
+                <div class="absolute -inset-[400%] animate-[shimmer_7s_linear_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                
+                <div class="flex justify-between text-xl relative z-10">
+                  <span id="previewBrand" class="tracking-wide">CARD</span>
+                  <i id="previewIcon" class="fa-regular fa-credit-card text-2xl"></i>
+                </div>
+                <div class="space-y-3 relative z-10">
+                  <div id="previewNumber" class="text-lg md:text-xl tracking-widest font-mono select-none">
+                    
+                    <span>••••</span><span class="opacity-60"> ••••</span><span class="opacity-60"> ••••</span><span class="opacity-60"> ••••</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span id="previewName" class="tracking-wide">NAME SURNAME</span>
+                    <span id="previewExp">MM/YY</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div id="cardBack" class="absolute backface-hidden w-full h-full rotate-y-180">
+              <div class="h-48 rounded-xl bg-gradient-to-br from-indigo-700 via-purple-800 to-purple-900
+                         shadow-lg flex flex-col relative overflow-hidden">
+                <div class="h-12 bg-slate-900 mt-6 w-full"></div>
+                <div class="flex flex-col items-end px-6 mt-5">
+                  <div class="bg-white/90 h-8 w-14 flex items-center justify-center text-slate-800 rounded">
+                    <span id="previewCVC">•••</span>
+                  </div>
+                  <div class="mt-2 w-3/4 h-5 bg-slate-800/50 rounded"></div>
+                  <div class="mt-1 w-1/2 h-5 bg-slate-800/50 rounded"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div>
+          <label for="cardName" class="block mb-1 text-sm text-slate-300">Name on card</label>
+          <input id="cardName" name="cc-name" type="text" required
+                 placeholder="Full name"
+                 class="peer w-full bg-slate-700/70 rounded-md px-4 py-3 placeholder-slate-500 transition-all duration-300 ease-out focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                 autocomplete="cc-name"
+                 aria-label="Name on card" 
+                 aria-required="true">
+           <p id="cardNameError"
+             class="mt-1 text-xs text-red-400 invisible peer-[aria-invalid='true']:visible fadeInUp">
+            Please enter a valid name
+          </p>
+        </div>
+
+        
+        <div>
+          <label class="flex justify-between mb-1 text-sm text-slate-300">
+            <span>Card number</span>
+            <i id="dynamicCardIcon" class="text-2xl opacity-0 transition-all duration-300"></i>
+          </label>
+          <input id="cardNumber" name="cc-number" inputmode="numeric" maxlength="19" required
+                 placeholder="XXXX XXXX XXXX XXXX"
+                 class="peer w-full bg-slate-700/70 rounded-md px-4 py-3 tracking-widest font-mono placeholder-slate-500 transition-all duration-300 ease-out focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                 aria-describedby="cardNumberError"
+                 aria-label="Card number" 
+                 aria-required="true">
+          <p id="cardNumberError"
+             class="mt-1 text-xs text-red-400 invisible peer-[aria-invalid='true']:visible fadeInUp">
+            Please enter a valid card number
+          </p>
+        </div>
+
+        
+        <div class="flex gap-4">
+          <div class="flex-1">
+            <label for="expiryDate" class="block mb-1 text-sm text-slate-300">Expiry date</label>
+            <input id="expiryDate" name="cc-exp" inputmode="numeric" maxlength="5" required
+                   placeholder="MM/YY"
+                   class="peer w-full bg-slate-700/70 rounded-md px-4 py-3 placeholder-slate-500 transition-all duration-300 ease-out focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                   aria-describedby="expiryDateError"
+                   aria-label="Expiry date" 
+                   aria-required="true">
+            <p id="expiryDateError"
+               class="mt-1 text-xs text-red-400 invisible peer-[aria-invalid='true']:visible fadeInUp">
+              Invalid date
+            </p>
+          </div>
+
+          <div class="w-28">
+            <label for="cvcCode" class="block mb-1 text-sm text-slate-300">CVC</label>
+            <input id="cvcCode" name="cc-csc" inputmode="numeric" maxlength="4" required
+                   placeholder="•••"
+                   class="peer w-full bg-slate-700/70 rounded-md px-4 py-3 text-center placeholder-slate-500 transition-all duration-300 ease-out focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                   aria-describedby="cvcCodeError"
+                   aria-label="Security code" 
+                   aria-required="true">
+            <p id="cvcCodeError"
+               class="mt-1 text-xs text-red-400 invisible peer-[aria-invalid='true']:visible fadeInUp">
+              Invalid CVC
+            </p>
+          </div>
+        </div>
+
+        
+        <button id="submitBtn" type="submit"
+                class="w-full bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700
+                       rounded-md py-3 text-lg font-semibold transition-all duration-300 relative overflow-hidden">
+          <span class="relative z-10">Pay Now</span>
+          <span id="loadingIndicator" class="absolute inset-0 bg-indigo-600 flex items-center justify-center opacity-0 transition-opacity duration-300 pointer-events-none">
+            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <p id="formSuccess" class="hidden text-center text-green-400 font-medium py-2 fadeInUp"></p>
+      </form>
+
+      
+      <aside class="lg:w-1/3 bg-slate-700/40 p-6 rounded-xl h-max">
+        <h2 class="text-xl font-semibold mb-1">Order summary</h2>
+        <p class="text-xs text-slate-400 mb-6">Receipt No: <strong>907200720</strong></p>
+
+        <div class="space-y-3 text-sm">
+          <div class="flex justify-between">
+            <span class="text-slate-300">Domain Name + Hosting (1 year)</span><span>$71.50</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-300">VAT 10%</span><span>$7.15</span>
+          </div>
+        </div>
+
+        <hr class="border-slate-600 my-6">
+
+        <div class="flex justify-between text-2xl font-bold">
+          <span>Total</span><span>$78.65</span>
+        </div>
+
+        <div class="mt-8 flex text-xs text-slate-400 gap-3">
+          <i class="fa-solid fa-shield-halved text-3xl text-green-500"></i>
+          <p><span class="font-medium text-slate-200">Protected</span> by 3-D Secure encryption.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
