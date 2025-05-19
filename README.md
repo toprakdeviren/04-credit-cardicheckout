@@ -45,7 +45,7 @@ python -m http.server
 
 Designed and developed by [Uğur Toprakdeviren](https://github.com/toprakdeviren)
 
-Part of the [Credit Card Checkout](https://github.com/toprakdeviren/04-credit-cardicheckout) collection.
+Part of the [Credit Card Checkout](https://toprakdeviren.github.io/04-credit-cardicheckout) collection.
 
 ## License
 
